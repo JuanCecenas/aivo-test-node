@@ -7,9 +7,9 @@ Make sure you have Node.js and npm installed on your system.
 
 1. Clone this repository:
 
-   ```shell
-   git clone https://github.com/JuanCecenas/aivo-test-node.git
-   ```
+  ```shell
+  git clone https://github.com/JuanCecenas/aivo-test-node.git
+  ```
 
 2. Install project dependencies: 
 
@@ -22,6 +22,10 @@ Make sure you have Node.js and npm installed on your system.
 1. Obtain a YouTube API key by following the official documentation.
 
 2. Create a .env file in the project root directory and add your YouTube API key:
+  
+  ```shell
+  API_KEY=YourYouTubeAPIKey
+  ```
 
 3. Start the server:
 
@@ -31,7 +35,9 @@ Make sure you have Node.js and npm installed on your system.
 
 # Open your web browser and access the following URL:
 
+
 http://localhost:3000/api-docs
+
 
 Here you will find the Swagger interface with the API documentation and you can test the YouTube video search endpoint.
 
