@@ -1,14 +1,14 @@
 {
   "name": "aivo-test-node",
   "version": "1.0.0",
-  "description": "",
+  "description": "API to search and get information from YouTube videos, AIVO Test",
   "main": "index.js",
   "scripts": {
     "start": "node ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Juan Carlos Cecenas Rojas",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.4.0",
