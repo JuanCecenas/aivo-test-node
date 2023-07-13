@@ -1,11 +1,6 @@
-# Project Name
+# AIVO Test YouTube API
 
-Brief project description.
-
-## Description
-
-Detailed description of your project and its functionality.
-
+Challenge test for AIVO
 ## Installation
 
 Make sure you have Node.js and npm installed on your system.
@@ -14,11 +9,13 @@ Make sure you have Node.js and npm installed on your system.
 
    ```shell
    git clone https://github.com/JuanCecenas/aivo-test-node.git
+   ```
 
 2. Install project dependencies: 
 
   ```shell
   npm install
+  ```
 
 # Usage
 
@@ -30,6 +27,7 @@ Make sure you have Node.js and npm installed on your system.
 
   ```shell
   npm start
+  ```
 
 # Open your web browser and access the following URL:
 
