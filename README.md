@@ -17,7 +17,7 @@ Make sure you have Node.js and npm installed on your system.
   npm install
   ```
 
-# Usage
+## Usage
 
 1. Obtain a YouTube API key by following the official documentation.
 
@@ -33,7 +33,7 @@ Make sure you have Node.js and npm installed on your system.
   npm start
   ```
 
-# Open your web browser and access the following URL:
+## Open your web browser and access the following URL:
 
 
 http://localhost:3000/api-docs
