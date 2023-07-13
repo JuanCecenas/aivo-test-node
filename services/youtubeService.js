@@ -1,6 +1,25 @@
 const axios = require('axios');
 require('dotenv').config();
 
+const formatResult = (result, video) => {
+  const { id, snippet, statistics } = result;
+  const videoId = video?.id ?? id ?? 'N/A'; // Default value if no valid video ID
+
+  return {
+    published_at: snippet.publishedAt,
+    id: videoId,
+    title: snippet.title,
+    description: snippet.description,
+    thumbnail: snippet.thumbnails.default.url,
+    extra: {
+      link: `https://www.youtube.com/watch?v=${videoId}`,
+      views: video?.statistics?.viewCount ?? statistics?.viewCount ?? 0,
+      likes: video?.statistics?.likeCount ?? statistics?.likeCount ?? 0,
+      comments: video?.statistics?.commentCount ?? statistics?.commentCount ?? 0
+    }
+  };
+};
+
 const searchVideos = async (searchQuery) => {
   const API_KEY = process.env.API_KEY;
 
@@ -22,7 +41,7 @@ const searchVideos = async (searchQuery) => {
       return [];
     }
 
-    const videosResponse = await axios.get('https://www.googleapis.com/youtube/v3/videos', {
+    const videoResponse = await axios.get('https://www.googleapis.com/youtube/v3/videos', {
       params: {
         part: 'snippet,statistics',
         id: videoIds,
@@ -30,15 +49,21 @@ const searchVideos = async (searchQuery) => {
       },
     });
 
-    const videos = videosResponse.data.items;
+    const videos = videoResponse.data.items;
 
-    return videos;
+    const formattedResults = results.map((result) => {
+      const videoId = result.id.videoId ?? 'N/A'; // Default value if no valid video ID
+      const video = videos.find((v) => v.id === videoId);
+
+      return formatResult(result, video);
+    });
+
+    return formattedResults;
   } catch (error) {
     throw new Error('Search failed');
   }
 };
 
-
 module.exports = {
   searchVideos
-}
+};
