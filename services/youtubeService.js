@@ -1,13 +1,11 @@
 const axios = require('axios');
 require('dotenv').config();
 
-//const URL = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=muse&key=['
-
 const searchVideos = async (searchQuery) => {
   const API_KEY = process.env.API_KEY;
 
   try {
-    const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
+    const searchResponse = await axios.get('https://www.googleapis.com/youtube/v3/search', {
       params: {
         part: 'snippet',
         q: searchQuery,
@@ -16,12 +14,30 @@ const searchVideos = async (searchQuery) => {
       },
     });
 
-    const results = response.data.items;
-    return results;
+    const results = searchResponse.data.items;
+
+    const videoIds = results.map((item) => item.id.videoId).join(',');
+
+    if (videoIds.length === 0) {
+      return [];
+    }
+
+    const videosResponse = await axios.get('https://www.googleapis.com/youtube/v3/videos', {
+      params: {
+        part: 'snippet,statistics',
+        id: videoIds,
+        key: API_KEY,
+      },
+    });
+
+    const videos = videosResponse.data.items;
+
+    return videos;
   } catch (error) {
     throw new Error('Search failed');
   }
 };
+
 
 module.exports = {
   searchVideos

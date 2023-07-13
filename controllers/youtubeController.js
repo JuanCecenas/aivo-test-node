@@ -1,16 +1,19 @@
 const youtubeService = require('../services/youtubeService');
 
 const formatResult = (result) => {
-  const { id, snippet } = result;
-  
+  const { id, snippet, statistics } = result;
+
   return {
     published_at: snippet.publishedAt,
-    id: id.videoId,
+    id: id,
     title: snippet.title,
     description: snippet.description,
     thumbnail: snippet.thumbnails.default.url,
     extra: {
-      something: "extra"
+      link: `https://www.youtube.com/watch?v=${id}`,
+      views: statistics.viewCount,
+      likes: statistics.likeCount,
+      comments: statistics.commentCount
     }
   };
 };
